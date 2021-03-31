@@ -1,0 +1,28 @@
+{{>header}}
+<a type="button" class="btn btn-outline-primary" href="/books/add">Add book</a>
+<br>
+<h3>Saved books:</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Pages</th>
+        <th scope="col">Created</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#books}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{pages}}</td>
+            <td>{{created}}</td>
+            <td><a href="/books/delete/{{id}}">Delete</a></td>
+        </tr>
+    {{/books}}
+    </tbody>
+</table>
+
+{{>footer}}
