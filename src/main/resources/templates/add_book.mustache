@@ -1,20 +1,25 @@
 {{>header}}
 
-<form action="/books/add" method="post">
-    <div class="mb-3">
-        <label class="form-label">Title</label>
-        <input type="text" class="form-control" name="title" required>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Priority</label>
-        <input type="number" class="form-control" name="priority" required>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Pages</label>
-        <input type="number" class="form-control" name="pages" required>
-    </div>
+<div class="row justify-content-center">
+    <div class="col-4">
+        <h3>Add a new book</h3>
+        <form action="/books/add" method="post">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Priority</label>
+                <input type="number" class="form-control" name="priority" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Pages</label>
+                <input type="number" class="form-control" name="pages" required>
+            </div>
 
-    <button type="submit" class="btn btn-primary">Add new book</button>
-</form>
+            <button type="submit" class="btn btn-primary">Add a new book</button>
+        </form>
+    </div>
+</div>
 
 {{>footer}}

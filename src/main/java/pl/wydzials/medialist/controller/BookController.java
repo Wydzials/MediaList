@@ -19,7 +19,7 @@ public class BookController {
 
     @GetMapping("/books")
     public String books(Model model) {
-        model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("books", bookRepository.findAllByOrderByPriorityDesc());
         return "books";
     }
 
