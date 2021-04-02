@@ -1,5 +1,5 @@
 {{>header}}
-<a type="button" class="btn btn-outline-primary" href="/books/add">Add a new book</a>
+<a type="button" class="btn btn-outline-primary" href="/user/books/add">Add a new book</a>
 <br>
 <br>
 <h3>Saved books:</h3>
@@ -22,7 +22,7 @@
             <td>{{priority}}</td>
             <td>{{pages}}</td>
             <td>{{created}}</td>
-            <td><a href="/books/delete/{{id}}">Delete</a></td>
+            <td><a href="/user/books/delete/{{id}}">Delete</a></td>
         </tr>
     {{/books}}
     </tbody>
