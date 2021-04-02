@@ -1,12 +1,7 @@
 package pl.wydzials.medialist.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class User {
@@ -22,6 +17,9 @@ public class User {
     private String password;
 
     private String roles = "";
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Medium> media = new HashSet<>();
 
     public User(String username, String password, String roles) {
         this.username = username;
@@ -69,5 +67,9 @@ public class User {
             return Arrays.asList(roles.split(","));
         }
         return new ArrayList<>();
+    }
+
+    public Set<Medium> getMedia() {
+        return media;
     }
 }

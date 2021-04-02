@@ -7,8 +7,8 @@ public class Book extends Medium {
 
     private int pages;
 
-    public Book(String title, int priority, int pages) {
-        super(title, priority);
+    public Book(String title, int priority, int pages, User user) {
+        super(title, priority, user);
         this.pages = pages;
     }
 

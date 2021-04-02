@@ -14,9 +14,15 @@ public abstract class Medium {
     protected int priority;
     protected LocalDateTime created;
 
-    public Medium(String title, int priority) {
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
+    @JoinColumn
+    protected User user;
+
+    public Medium(String title, int priority, User user) {
         this.title = title;
         this.priority = priority;
+        this.user = user;
+        user.getMedia().add(this);
         this.created = LocalDateTime.now();
     }
 
@@ -54,6 +60,15 @@ public abstract class Medium {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        user.getMedia().add(this);
     }
 
     @Override
