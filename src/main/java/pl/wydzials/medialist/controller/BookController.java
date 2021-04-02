@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.wydzials.medialist.model.Book;
 import pl.wydzials.medialist.repository.BookRepository;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/user/books")
 public class BookController {
@@ -36,5 +38,10 @@ public class BookController {
     public String deleteBook(@PathVariable long id) {
         bookRepository.deleteById(id);
         return "redirect:/user/books";
+    }
+
+    @ModelAttribute("username")
+    public String getVersion(Principal principal) {
+        return principal.getName();
     }
 }
