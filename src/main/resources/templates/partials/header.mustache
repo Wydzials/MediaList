@@ -11,8 +11,8 @@
 
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-primary text-decoration-none">
-            MediaList
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-primary text-decoration-none lead">
+            <strong>MediaList</strong>
         </a>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -28,15 +28,8 @@
             {{/username}}
 
             {{#username}}
-                <div class="container-fluid">
-                    <span class="navbar-text">
-                        Logged in as {{.}}
-                    </span>
-                </div>
-
-
                 <form action="/logout" method="post">
-                    <button type="submit" class="btn btn-outline-primary">Logout</button>
+                    <button type="submit" class="btn btn-outline-primary"> Logout ({{.}})</button>
                 </form>
             {{/username}}
         </div>

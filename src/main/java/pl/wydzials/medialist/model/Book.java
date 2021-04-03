@@ -24,6 +24,15 @@ public class Book extends Medium {
     }
 
     @Override
+    public void edit(Medium medium) {
+        super.edit(medium);
+        if (medium instanceof Book) {
+            Book book = (Book) medium;
+            pages = book.pages;
+        }
+    }
+
+    @Override
     public String toString() {
         return "Book{" +
                 "title='" + getTitle() + "'" +

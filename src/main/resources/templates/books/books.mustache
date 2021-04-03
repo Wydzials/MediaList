@@ -11,20 +11,22 @@
         <th scope="col">Priority</th>
         <th scope="col">Pages</th>
         <th scope="col">Created</th>
+        <th scope="col">Edit</th>
         <th scope="col">Delete</th>
     </tr>
     </thead>
     <tbody>
-    {{#books}}
+    {{#media}}
         <tr>
             <td>{{id}}</td>
             <td>{{title}}</td>
             <td>{{priority}}</td>
             <td>{{pages}}</td>
             <td>{{created}}</td>
+            <td><a href="/user/books/edit/{{id}}">Edit</a></td>
             <td><a href="/user/books/delete/{{id}}">Delete</a></td>
         </tr>
-    {{/books}}
+    {{/media}}
     </tbody>
 </table>
 
