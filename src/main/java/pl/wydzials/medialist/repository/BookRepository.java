@@ -4,6 +4,6 @@ import org.springframework.stereotype.Repository;
 import pl.wydzials.medialist.model.Book;
 
 @Repository
-public interface BookRepository extends MediumRepository<Book> {
+public interface BookRepository extends GenericMediumRepository<Book> {
 
 }

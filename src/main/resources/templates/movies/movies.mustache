@@ -1,17 +1,15 @@
 {{>partials/header}}
-<a type="button" class="btn btn-outline-primary" href="/user/books/add">Add a new book</a>
+<a type="button" class="btn btn-outline-primary" href="/user/movies/add">Add a new movie</a>
 <br>
 <br>
-<h3>Saved books:</h3>
-
-
+<h3>Saved movies:</h3>
 <table class="table table-striped">
     <thead>
     <tr>
         <th scope="col">Title</th>
         <th scope="col">Time</th>
         <th scope="col">Priority</th>
-        <th scope="col">Pages</th>
+        <th scope="col">Country</th>
         <th scope="col">Created</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -23,10 +21,10 @@
             <td>{{title}}</td>
             <td>{{getTimeFormatted}}</td>
             <td>{{priority}}</td>
-            <td>{{pages}}</td>
+            <td>{{country}}</td>
             <td>{{created}}</td>
-            <td><a href="/user/books/edit/{{id}}">Edit</a></td>
-            <td><a href="/user/books/delete/{{id}}">Delete</a></td>
+            <td><a href="/user/movies/edit/{{id}}">Edit</a></td>
+            <td><a href="/user/movies/delete/{{id}}">Delete</a></td>
         </tr>
     {{/media}}
     </tbody>

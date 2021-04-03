@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.wydzials.medialist.model.Medium;
 import pl.wydzials.medialist.model.User;
-import pl.wydzials.medialist.repository.MediumRepository;
+import pl.wydzials.medialist.repository.GenericMediumRepository;
 import pl.wydzials.medialist.repository.UserRepository;
 
 import java.security.Principal;
 import java.util.Optional;
 
-public abstract class MediumController<M extends Medium, R extends MediumRepository<M>> {
+public abstract class MediumController<M extends Medium, R extends GenericMediumRepository<M>> {
     protected final R repository;
     protected final UserRepository userRepository;
 
@@ -66,11 +66,11 @@ public abstract class MediumController<M extends Medium, R extends MediumReposit
     @PostMapping("/edit/{id}")
     public String editPost(@PathVariable long id, M editedMedium, Principal principal) {
         Optional<M> optional = repository.findById(id);
-        if(optional.isEmpty()) {
+        if (optional.isEmpty()) {
             return "redirect:/user/" + className;
         }
         M medium = optional.get();
-        if(medium.getUser().getUsername().equals(principal.getName())) {
+        if (medium.getUser().getUsername().equals(principal.getName())) {
             medium.edit(editedMedium);
             repository.save(medium);
         }
