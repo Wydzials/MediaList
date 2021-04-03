@@ -1,0 +1,25 @@
+{{>partials/header}}
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <h3>Edit book '{{medium.title}}'</h3>
+        <form action="/user/books/edit/{{medium.id}}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" value="{{medium.title}}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Priority</label>
+                <input type="number" class="form-control" name="priority" value="{{medium.priority}}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Pages</label>
+                <input type="number" class="form-control" name="pages" value="{{medium.pages}}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add a new book</button>
+        </form>
+    </div>
+</div>
+
+{{>partials/footer}}

@@ -71,6 +71,11 @@ public abstract class Medium {
         user.getMedia().add(this);
     }
 
+    public void edit(Medium medium) {
+        title = medium.title;
+        priority = medium.priority;
+    }
+
     @Override
     public String toString() {
         return "Medium{" +
