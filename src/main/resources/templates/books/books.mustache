@@ -2,12 +2,13 @@
 <a type="button" class="btn btn-outline-primary" href="/user/books/add">Add a new book</a>
 <br>
 <br>
+{{avg}}
 <h3>Saved books:</h3>
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">ID</th>
         <th scope="col">Title</th>
+        <th scope="col">Time</th>
         <th scope="col">Priority</th>
         <th scope="col">Pages</th>
         <th scope="col">Created</th>
@@ -18,8 +19,8 @@
     <tbody>
     {{#media}}
         <tr>
-            <td>{{id}}</td>
             <td>{{title}}</td>
+            <td>{{getTimeFormatted}}</td>
             <td>{{priority}}</td>
             <td>{{pages}}</td>
             <td>{{created}}</td>

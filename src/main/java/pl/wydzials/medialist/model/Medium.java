@@ -12,16 +12,18 @@ public abstract class Medium {
     protected Long id;
     protected String title;
     protected int priority;
+    protected int timeInMinutes;
     protected LocalDateTime created;
 
     @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn
     protected User user;
 
-    public Medium(String title, int priority, User user) {
+    public Medium(String title, int priority, int timeInMinutes, User user) {
         this.title = title;
         this.priority = priority;
         this.user = user;
+        this.timeInMinutes = timeInMinutes;
         user.getMedia().add(this);
         this.created = LocalDateTime.now();
     }
@@ -71,9 +73,24 @@ public abstract class Medium {
         user.getMedia().add(this);
     }
 
+    public int getTimeInMinutes() {
+        return timeInMinutes;
+    }
+
+    public void setTimeInMinutes(int timeInMinutes) {
+        this.timeInMinutes = timeInMinutes;
+    }
+
     public void edit(Medium medium) {
         title = medium.title;
         priority = medium.priority;
+        timeInMinutes = medium.timeInMinutes;
+    }
+
+    public String getTimeFormatted() {
+        int hours = timeInMinutes / 60;
+        int minutes = timeInMinutes % 60;
+        return hours + ":" + String.format("%02d", minutes);
     }
 
     @Override
