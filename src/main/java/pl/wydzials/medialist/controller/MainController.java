@@ -15,8 +15,8 @@ import java.security.Principal;
 @Controller
 public class MainController {
 
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public MainController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -41,7 +41,7 @@ public class MainController {
 
     @PostMapping("/signup")
     public String signupPost(User user) {
-        if(userRepository.findByUsername(user.getUsername()) == null) {
+        if (userRepository.findByUsername(user.getUsername()) == null) {
             user.setRoles("USER");
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);

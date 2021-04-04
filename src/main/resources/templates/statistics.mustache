@@ -1,0 +1,77 @@
+{{>partials/header}}
+
+<h3 class="mb-5">Your statistics</h3>
+
+<div class="row">
+
+    <div class="col-6">
+        <h4>📈 Main statistics</h4>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Total number of media
+                <h1 class="display-6">{{totalCount}}</h1>
+            </li>
+            <li class="list-group-item">
+                Total time
+                <h1 class="display-6">{{totalTimeHours}} h {{totalTimeMinutes}} min</h1>
+            </li>
+            <li class="list-group-item">
+                Average priority
+                <h1 class="display-6">{{averagePriority}}</h1>
+            </li>
+            <li class="list-group-item">
+                Books page count
+                <h1 class="display-6">{{booksPageCount}}</h1>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-6">
+        <div class="row mb-5">
+            <br>
+            <h4>🧮 Number of media per type</h4>
+            <table class="charts-css column show-labels show-primary-axis data-spacing-10" style="height: 300px;">
+                <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Count</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {{#chartStatistics}}
+                    <tr>
+                        <th scope="row">{{medium}}</th>
+                        <td style="--size: calc( {{count}} / {{countMax}} )">{{count}}</td>
+                    </tr>
+                {{/chartStatistics}}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <h4>⌛ Hours per type</h4>
+            <table class="charts-css column show-labels show-primary-axis data-spacing-10" style="height: 300px;">
+                <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Count</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {{#chartStatistics}}
+                    <tr>
+                        <th scope="row">{{medium}}</th>
+                        <td style="--size: calc( {{time}} / {{timeMax}} )">{{time}}</td>
+                    </tr>
+                {{/chartStatistics}}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+{{>partials/footer}}
