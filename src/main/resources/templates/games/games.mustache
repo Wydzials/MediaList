@@ -1,0 +1,35 @@
+{{>partials/header}}
+<a type="button" class="btn btn-outline-primary" href="/user/games/add">Add a new game</a>
+<br>
+<br>
+<h3>Saved games:</h3>
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Time</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Platform</th>
+        <th scope="col">Created</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#media}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{getTimeFormatted}}</td>
+            <td>{{priority}}</td>
+            <td>{{platform}}</td>
+            <td>{{created}}</td>
+            <td><a href="/user/games/edit/{{id}}">Edit</a></td>
+            <td><a href="/user/games/delete/{{id}}">Delete</a></td>
+        </tr>
+    {{/media}}
+    </tbody>
+</table>
+
+{{>partials/footer}}
