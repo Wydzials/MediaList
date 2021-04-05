@@ -23,6 +23,7 @@ public class Game extends Medium {
         this.platform = platform;
     }
 
+    @Override
     public void edit(Medium medium) {
         super.edit(medium);
         if (medium instanceof Game) {
