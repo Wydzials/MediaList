@@ -1,5 +1,7 @@
 package pl.wydzials.medialist.model;
 
+import pl.wydzials.medialist.model.media.Medium;
+
 import javax.persistence.*;
 import java.util.*;
 

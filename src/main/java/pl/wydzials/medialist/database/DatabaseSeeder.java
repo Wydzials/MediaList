@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import pl.wydzials.medialist.model.Book;
-import pl.wydzials.medialist.model.Medium;
+import pl.wydzials.medialist.model.media.Book;
+import pl.wydzials.medialist.model.media.Medium;
 import pl.wydzials.medialist.model.User;
-import pl.wydzials.medialist.repository.MediumRepository;
+import pl.wydzials.medialist.repository.media.MediumRepository;
 import pl.wydzials.medialist.repository.UserRepository;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         List<Medium> media = new ArrayList<>(Arrays.asList(b1, b2, b3));
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 12; i++) {
             media.add(mediaGenerator.generateBook(szymon));
             media.add(mediaGenerator.generateGame(szymon));
         }

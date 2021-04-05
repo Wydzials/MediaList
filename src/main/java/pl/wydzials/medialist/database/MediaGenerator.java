@@ -3,6 +3,10 @@ package pl.wydzials.medialist.database;
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Component;
 import pl.wydzials.medialist.model.*;
+import pl.wydzials.medialist.model.media.Book;
+import pl.wydzials.medialist.model.media.Game;
+import pl.wydzials.medialist.model.media.Movie;
+import pl.wydzials.medialist.model.media.Song;
 
 @Component
 public class MediaGenerator {
@@ -30,7 +34,7 @@ public class MediaGenerator {
 
     public Song generateSong(User user) {
         String genre = faker.music().genre();
-        return new Song(title(), priority(), genre, time(1,7), user);
+        return new Song(title(), priority(), genre, time(3,7), user);
     }
 
     private String title() {

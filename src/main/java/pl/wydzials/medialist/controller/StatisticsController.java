@@ -8,12 +8,11 @@ import org.springframework.util.comparator.Comparators;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.wydzials.medialist.ChartStatisticsDTO;
-import pl.wydzials.medialist.model.Book;
-import pl.wydzials.medialist.model.Medium;
+import pl.wydzials.medialist.model.media.Book;
+import pl.wydzials.medialist.model.media.Medium;
 import pl.wydzials.medialist.model.User;
-import pl.wydzials.medialist.repository.BookRepository;
-import pl.wydzials.medialist.repository.MediumRepository;
+import pl.wydzials.medialist.repository.media.BookRepository;
+import pl.wydzials.medialist.repository.media.MediumRepository;
 import pl.wydzials.medialist.repository.UserRepository;
 
 import java.security.Principal;

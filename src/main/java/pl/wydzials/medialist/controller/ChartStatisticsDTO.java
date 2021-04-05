@@ -1,4 +1,4 @@
-package pl.wydzials.medialist;
+package pl.wydzials.medialist.controller;
 
 public class ChartStatisticsDTO {
 

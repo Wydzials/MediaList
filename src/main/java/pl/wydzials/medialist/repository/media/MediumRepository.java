@@ -1,8 +1,8 @@
-package pl.wydzials.medialist.repository;
+package pl.wydzials.medialist.repository.media;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
-import pl.wydzials.medialist.model.Medium;
+import pl.wydzials.medialist.model.media.Medium;
 
 @Repository
 @Primary

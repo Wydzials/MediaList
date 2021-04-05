@@ -1,4 +1,6 @@
-package pl.wydzials.medialist.model;
+package pl.wydzials.medialist.model.media;
+
+import pl.wydzials.medialist.model.User;
 
 import javax.persistence.Entity;
 
