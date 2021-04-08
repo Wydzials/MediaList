@@ -2,11 +2,8 @@ package pl.wydzials.medialist.database;
 
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Component;
-import pl.wydzials.medialist.model.*;
-import pl.wydzials.medialist.model.media.Book;
-import pl.wydzials.medialist.model.media.Game;
-import pl.wydzials.medialist.model.media.Movie;
-import pl.wydzials.medialist.model.media.Song;
+import pl.wydzials.medialist.model.User;
+import pl.wydzials.medialist.model.media.*;
 
 @Component
 public class MediaGenerator {
@@ -15,6 +12,9 @@ public class MediaGenerator {
 
     private final String[] gamePlatforms =
             {"PC", "Xbox Series", "Xbox One", "PlayStation 5", "PlayStation 4", "Nintendo Switch", "Mobile"};
+
+    private final String[] customTypes =
+            {"Theatre play", "Live show", "Exhibition", "Festival", "LARP"};
 
     public Book generateBook(User user) {
         int pages = faker.number().numberBetween(100, 1001);
@@ -34,7 +34,12 @@ public class MediaGenerator {
 
     public Song generateSong(User user) {
         String genre = faker.music().genre();
-        return new Song(title(), priority(), genre, time(3,7), user);
+        return new Song(title(), priority(), genre, time(3, 7), user);
+    }
+
+    public Custom generateCustom(User user) {
+        String type = customTypes[faker.number().numberBetween(0, customTypes.length)];
+        return new Custom(title(), priority(), type, time(120, 600), user);
     }
 
     private String title() {

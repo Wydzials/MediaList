@@ -1,0 +1,29 @@
+{{>partials/header}}
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <h3>Add a new custom medium</h3>
+        <form action="/user/custom/add" method="post">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Priority</label>
+                <input type="number" class="form-control" name="priority" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Pages</label>
+                <input type="number" class="form-control" name="pages" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Type</label>
+                <input type="text" class="form-control" name="type" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add a new custom medium</button>
+        </form>
+    </div>
+</div>
+
+{{>partials/footer}}

@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.wydzials.medialist.model.media.Medium;
 import pl.wydzials.medialist.model.User;
-import pl.wydzials.medialist.repository.media.GenericMediumRepository;
+import pl.wydzials.medialist.model.media.Medium;
 import pl.wydzials.medialist.repository.UserRepository;
+import pl.wydzials.medialist.repository.media.GenericMediumRepository;
 
 import java.security.Principal;
 import java.util.Optional;

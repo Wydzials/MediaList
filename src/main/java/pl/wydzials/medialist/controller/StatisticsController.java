@@ -8,12 +8,14 @@ import org.springframework.util.comparator.Comparators;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.wydzials.medialist.model.User;
 import pl.wydzials.medialist.model.media.Book;
 import pl.wydzials.medialist.model.media.Medium;
-import pl.wydzials.medialist.model.User;
+import pl.wydzials.medialist.model.media.Song;
+import pl.wydzials.medialist.repository.UserRepository;
 import pl.wydzials.medialist.repository.media.BookRepository;
 import pl.wydzials.medialist.repository.media.MediumRepository;
-import pl.wydzials.medialist.repository.UserRepository;
+import pl.wydzials.medialist.repository.media.SongRepository;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -27,12 +29,17 @@ public class StatisticsController {
 
     private final MediumRepository mediumRepository;
     private final BookRepository bookRepository;
+    private final SongRepository songRepository;
     private final UserRepository userRepository;
 
     @Autowired
-    public StatisticsController(MediumRepository mediumRepository, BookRepository bookRepository, UserRepository userRepository) {
+    public StatisticsController(MediumRepository mediumRepository,
+                                BookRepository bookRepository,
+                                SongRepository songRepository,
+                                UserRepository userRepository) {
         this.mediumRepository = mediumRepository;
         this.bookRepository = bookRepository;
+        this.songRepository = songRepository;
         this.userRepository = userRepository;
     }
 
@@ -41,14 +48,15 @@ public class StatisticsController {
         User user = userRepository.findByUsername(principal.getName());
         List<Medium> media = mediumRepository.findAllByUserOrderByPriorityDesc(user);
         List<Book> books = bookRepository.findAllByUserOrderByPriorityDesc(user);
+        List<Song> songs = songRepository.findAllByUserOrderByPriorityDesc(user);
 
-        getMainStatistics(model, media, books);
+        getMainStatistics(model, media, books, songs);
         getChartStatistics(model, media);
 
         return "statistics";
     }
 
-    private void getMainStatistics(Model model, List<Medium> media, List<Book> books) {
+    private void getMainStatistics(Model model, List<Medium> media, List<Book> books, List<Song> songs) {
         int totalTimeInMinutes = media.stream().
                 mapToInt(Medium::getTimeInMinutes).sum();
 
@@ -58,11 +66,15 @@ public class StatisticsController {
         int booksPageCount = books.stream().
                 mapToInt(Book::getPages).sum();
 
+        long genreCount = songs.stream().
+                map(Song::getGenre).distinct().count();
+
         model.addAttribute("totalCount", media.size());
         model.addAttribute("totalTimeHours", totalTimeInMinutes / 60);
         model.addAttribute("totalTimeMinutes", totalTimeInMinutes % 60);
         model.addAttribute("averagePriority", String.format("%.2f", averagePriority));
         model.addAttribute("booksPageCount", booksPageCount);
+        model.addAttribute("genreCount", genreCount);
     }
 
     private void getChartStatistics(Model model, List<Medium> media) {
