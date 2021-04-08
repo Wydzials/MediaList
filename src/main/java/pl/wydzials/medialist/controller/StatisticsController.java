@@ -1,7 +1,13 @@
 package pl.wydzials.medialist.controller;
 
 
+import com.jamesmurty.utils.XMLBuilder2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.comparator.Comparators;
@@ -17,6 +23,7 @@ import pl.wydzials.medialist.repository.media.BookRepository;
 import pl.wydzials.medialist.repository.media.MediumRepository;
 import pl.wydzials.medialist.repository.media.SongRepository;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +31,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/user/statistics")
+@RequestMapping("/user")
 public class StatisticsController {
 
     private final MediumRepository mediumRepository;
@@ -43,7 +50,7 @@ public class StatisticsController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping
+    @GetMapping("/statistics")
     public String statistics(Model model, Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
         List<Medium> media = mediumRepository.findAllByUserOrderByPriorityDesc(user);
@@ -100,6 +107,35 @@ public class StatisticsController {
         model.addAttribute("chartStatistics", chartStatistics);
         model.addAttribute("countMax", countMax);
         model.addAttribute("timeMax", timeMax);
+    }
+
+    @GetMapping("/export")
+    public ResponseEntity<Resource> export(Principal principal) {
+        User user = userRepository.findByUsername(principal.getName());
+        List<Medium> media = mediumRepository.findAllByUserOrderByPriorityDesc(user);
+
+        String xml = buildXML(media);
+        ByteArrayResource resource = new ByteArrayResource(xml.getBytes(StandardCharsets.UTF_8));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=media.xml");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
+    }
+
+    private String buildXML(List<Medium> media) {
+        XMLBuilder2 builder = XMLBuilder2.create("media");
+        for (Medium medium : media) {
+            builder.element("medium")
+                    .e("title").t(medium.getTitle()).up()
+                    .e("priority").t(String.valueOf(medium.getPriority())).up()
+                    .e("timeInMinutes").t(String.valueOf(medium.getTimeInMinutes())).up()
+                    .e("created").t(medium.getCreated().toString()).up();
+        }
+        return builder.asString();
     }
 
     @ModelAttribute("username")
